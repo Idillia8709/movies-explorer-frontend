@@ -1,0 +1,132 @@
+.popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 10;
+}
+
+.popup__opened {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup__container {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 520px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #202020;
+  z-index: 11;
+}
+
+.popup__button-clouse {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  border: none;
+  outline: none;
+  padding: 0;
+  background-image: url('../../images/close-movie.svg');
+  background-color: #202020;
+  background-size: contain;
+}
+
+.popup__clouse:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.popup__links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 159px 0 0 0;
+}
+
+.popup__link {
+  list-style-type: none;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  padding: 0;
+  margin-bottom: 22px;
+}
+
+.popup__link:last-of-type {
+  margin: 0;
+}
+
+.popup__link:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  border-bottom: 1px solid #FFFFFF;
+}
+
+.popup__profile-button {
+  width: 100px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #202020;
+  border-radius: 20px;
+  border: 1px solid #AAAAAA;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration: none;
+  padding: 0;
+  margin-bottom: 90px;
+}
+
+.popup__profile-button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.profile__icon {
+  padding: 0;
+  margin: 0 7px 0 0;
+  width: 12px;
+  height: 14px;
+}
+
+@media screen and (max-width: 520px) {
+  .popup__container {
+    width: 100%;
+  }  
+
+  .popup__clouse {
+    top: 13px;
+    right: 13px;
+  }
+
+  .popup__links {
+    margin: 144px 0 0 0;
+  }
+
+  .popup__profile-button {
+    margin-bottom: 46px;
+  }
+
+}
+
+

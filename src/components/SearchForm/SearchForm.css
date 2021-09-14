@@ -1,0 +1,154 @@
+.search-form {
+  margin: 80px 70px 0 70px;
+  border-bottom: 1px solid #424242;
+}
+
+.search-form__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
+}
+
+.search-form__search {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  
+}
+
+.search-form__input {
+  background-color: #2F2F2F;
+  border: none;
+  padding: 0 0 0 22px;
+  outline: none;
+  color: #8B8B8B;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0 10px 0 0;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.search-form__submit {
+  color: #FFFFFF;
+  background-color: #4285F4;
+  border: none;
+  border-radius: 25px;
+  padding: 0;
+  margin: 0;
+  width: 70px;
+  height: 44px;
+  /* max-width: 70px;
+  max-height: 44px; */
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.search-form__submit:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.seach-form__filter-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.search-form__filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  width: 36px;
+  height: 20px;
+  margin: 0;
+  background-color: #202020;
+  box-shadow: -1px 3px 3px 1px black;
+  border-radius: 20px;
+  padding: 6px;
+  position: relative;
+}
+
+.search-form__filter_type_active {
+  background-color: #202020;
+}
+
+.search-form__filter:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.search-form__radio-button {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  z-index: 4;
+}
+
+.search-form__radio-button:hover {
+  cursor: pointer;
+}
+
+.search-form__switch {
+  box-sizing: border-box;
+  height: 14px;
+  width:14px;
+  background-color: #3DDC84;
+  border-radius: 50%;
+  position: relative;
+  left: 0;
+  top: 0;
+  z-index: 3;
+
+}
+
+
+
+.search-form__name {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 0;
+  margin: 0 0 0 12px;
+}
+
+
+.search-form__radio-button:checked ~ .search-form__switch{
+  left: 0;
+}
+
+.search-form__radio-button ~ :checked ~ .search-form__switch{
+  left: 16px;
+}
+
+.search-form__filter .search-form__radio-button:checked{
+  z-index: 1;
+}
+
+@media screen and (max-width: 769px) {
+  .search-form {
+    margin: 80px 30px 0 30px;
+  }  
+}
+
+@media screen and (max-width: 520px) {
+  .search-form {
+    margin: 80px 14px 0 14px;
+  }  
+
+  .seach-form__filter-container {
+    margin-bottom: 44px;
+    margin-top: 45px;
+  }
+}

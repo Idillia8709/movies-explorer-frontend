@@ -1,0 +1,138 @@
+.about-me {
+  padding: 110px 70px 100px 70px;
+  color: #FFFFFF;
+
+}
+
+.about-me__info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 66px;
+}
+
+.about-me__paragraph {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 270px;
+
+}
+
+.about-me__name {
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 58px;
+  margin: 0 0 18px 0;
+}
+
+.about-me__profession {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  margin: 0 0 26px 0;
+}
+
+.about-me__text {
+  font-size: 14px;
+  line-height: 22px;
+  margin: 0 0 99px 0;
+}
+
+.about-me__link {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  margin-right: 20px;
+  color: #FFFFFF;
+}
+
+.about-me__avatar {
+  width: 270px;
+  height: 327px;
+  object-fit: cover;
+  display: block;
+  border: none;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.about-me__link:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+  .about-me__paragraph {
+    margin-right: 100px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-me {
+    padding: 90px 50px;
+  }
+
+  .about-me__avatar {
+    width: 255px;
+    height: 307px;
+  }
+
+  .about-me__name {
+    font-size: 40px;
+    line-height: 40px;
+    margin: 0 0 16px 0;
+  }
+
+  .about-me__profession {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0 0 20px 0;
+  }
+
+  .about-me__text {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0 0 87px 0;
+  }
+
+  .about-me__paragraph {
+    margin-right: 49px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  
+  .about-me__info {
+    margin-top: 60px;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .about-me__paragraph {
+    margin: 0;
+  }
+
+  .about-me__name {
+    font-size:30px;
+    line-height: 36px;
+    margin: 40px 0 20px 0;
+  }
+
+  .about-me__profession {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about-me__text {
+    font-size: 11px;
+    line-height: 16px;
+    margin: 0 0 40px 0;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .about-me {
+    padding: 70px 14px;
+  }
+}
