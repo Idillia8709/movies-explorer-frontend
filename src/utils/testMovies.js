@@ -19,7 +19,7 @@ export const filmList = [
     duration: '1ч 42м',
     image: film2,
     nameRU: 'Киноальманах "100 лет дизайна"',
-    owner: 0,
+    owner: 1,
     movieId: 102,
   },
   {
@@ -54,14 +54,14 @@ export const filmList = [
     duration: '1ч 42м',
     image: film7,
     nameRU: 'Когда я думаю о Германии ночью',
-    owner: 0,
+    owner: 1,
     movieId: 107,
   },
   {
     duration: '1ч 42м',
     image: film8,
     nameRU: 'Gimme Danger: История Игги и The Stooges',
-    owner: 0,
+    owner: 1,
     movieId: 108,
   },
 ];
