@@ -91,15 +91,16 @@
 
 @media screen and (max-width: 520px) {
   .about-project {
-    padding: 60px 18px 47px 18px;
+    padding: 60px 18px 60px 18px;
   }
 
   .about-project__table {
+    width: 100%;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
    align-items: center;
-   margin: 70px 0 0 0;
+   /* margin: 70px 0 0 0; */
   }
 
   .about-project__subtitle {
@@ -114,7 +115,20 @@
     max-width: 284px;
   }
 
-  .about-project__progress {
-    display: none;
+  .about-project__dev {
+    font-size: 11px;
+    line-height: 12.74px;
+    
   }
+
+  .about-project__weeks {
+    font-size: 11px;
+    line-height: 13px;
+
+  }
+
+  .about-project__progress {
+    grid-template-columns: 1fr 2fr;
+    margin: 0;
+  } 
 }
