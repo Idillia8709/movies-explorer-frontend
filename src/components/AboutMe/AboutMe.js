@@ -33,7 +33,7 @@ export default function AboutMe({ title }) {
             </a>
           </div>
         </div>
-        <img className="about-me__avatar" src={avatar} alt="Аватар" />
+        <img className="about-me__avatar" src={avatar} alt="Фотография студента" />
       </div>
     </section>
   )

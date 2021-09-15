@@ -110,8 +110,8 @@
 }
 
 
-@media screen and (max-width: 520px){
-  .form {
+@media screen and (max-width: 520px) {
+   .form {
     max-width: 260px;
     width: 260px;
     margin: 80px auto 157px auto;
@@ -129,6 +129,15 @@
     text-align: center;
     color: #8B8B8B;
     text-decoration: none;
+  }
+  
+  .form__title {
+    text-align: center;
+    margin: 50px 0 80px 0;
+  }
+
+  .form__container:first-of-type {
+    align-items: center;
   }
 
 

@@ -87,7 +87,6 @@
   }
 
   .promo__links {
-   grid-gap: 6px;
-    
+    grid-gap: 6px;
   }
 }

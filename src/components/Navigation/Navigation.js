@@ -33,7 +33,7 @@ export default function Navigation(props) {
             </NavLink>
           </div>
           <Link to='/profile' className='menu__link-profile' >
-            <img src={profile} alt="Профиль" className="menu__icon" />
+            <img src={profile}  className="menu__icon"  alt="Иконка кнопки профиль аватара"/>
             Аккаунт
           </Link>
         </div>

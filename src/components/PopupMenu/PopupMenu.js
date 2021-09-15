@@ -26,7 +26,7 @@ export default function PopupMenu(props) {
           </Link>
         </nav>
         <Link to='/profile' className='popup__profile-button'>
-          <img src={profile} alt="Профиль" className="profile__icon" />
+          <img src={profile}  className="profile__icon" alt="Иконка кнопки профиль аватара" />
           Аккаунт
         </Link>
       </div>

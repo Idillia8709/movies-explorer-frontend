@@ -69,17 +69,13 @@
 
 @media screen and (max-width: 520px) {
   .portfolio {
-    padding: 0 14px 70px;
+    padding: 0 14px 70px 14px;
   }
 
   .portfolio__title {
     font-size: 14px;
     line-height: 20px;
     margin: 0 0 40px;
-  }
-
-  .portfolio__links {
-    height: 47px;
   }
 
   .portfolio__paragraph {

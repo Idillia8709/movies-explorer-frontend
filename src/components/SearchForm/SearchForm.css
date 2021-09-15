@@ -33,6 +33,11 @@
   width: 100%;
 }
 
+.search-form__input:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
 .search-form__submit {
   color: #FFFFFF;
   background-color: #4285F4;
