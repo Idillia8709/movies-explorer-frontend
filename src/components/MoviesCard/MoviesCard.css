@@ -1,0 +1,98 @@
+.movie-card {
+  margin-bottom: 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 270px;
+}
+
+.movie-card__image {
+  height: 151px;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  object-fit: cover;
+  display: block;
+}
+
+.movie-card__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 14px;
+} 
+
+.movie-card__description {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.movie-card__title {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #FFFFFF;
+}
+
+.movie__button {
+  width: 24px;
+  height: 24px;
+  background-color: #313131;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0;
+  border-radius: 36px;
+  padding: 0;
+  margin-left: 20px;
+}
+
+.movie__button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.movie__save-button {
+  background-image: url('../../images/iconLikeWhite.svg');
+  background-size: 10px 13px;
+}
+
+.movie__save-button_type_active {
+  background-image: url('../../images/iconLikeRed.svg');
+}
+
+.movie__delete-button {
+  background-size: 9px;
+  background-image: url('../../images/close-movie.svg');
+
+}
+
+.movie-card__duration {
+  margin: 0;
+  padding-top: 6px;
+  text-align: left;
+  border-top: 1px solid #8B8B8B;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+
+
+}
+
+@media screen and (max-width: 1023px){
+  .movie-card {
+    max-height: 300px;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .movie-card {
+    max-height: 271px;
+    width: 100%;
+  }
+}

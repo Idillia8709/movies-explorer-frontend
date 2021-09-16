@@ -1,0 +1,60 @@
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-style: normal;
+  font-weight: normal;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.not-found-page__status {
+  font-size: 140px;
+  line-height: 169px;
+  color: #FFFFFF;
+  margin: 246px 0 5px 0;
+}
+
+.not-found-page__message {
+  font-size: 16px;
+  line-height: 19px;
+  margin: 0 0 184px 0;
+}
+
+.not-found-page__back {
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration: none;
+  color: #4285F4;
+  margin: 0 0 60px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .not-found-page__status {
+    margin: 408px 0 5px 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .not-found-page__status {
+    font-size: 80px;
+    line-height: 97px;
+    margin: 329px 0 10px 0;
+  }
+
+  .not-found-page__message {
+    font-size: 12px;
+    line-height: 15px;
+    margin: 0 0 284px 0;
+  }
+
+  .not-found-page__back {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+.not-found-page__back:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}

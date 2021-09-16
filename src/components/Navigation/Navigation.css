@@ -1,0 +1,144 @@
+.menu {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+.menu__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  margin-left: 44px;
+
+}
+
+.menu__box-movies {
+  display: flex;
+  flex-direction: row;
+}
+
+.menu__film-link {
+  text-decoration: none;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  margin-right: 16px;
+  display: block;
+}
+
+.menu__film-link_type_saved {
+  width: 142px;
+}
+
+.menu__film-link:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.menu__location {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
+
+.menu__link {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #FFFFFF;
+  margin-right: 30px;
+  width: 76px;
+  height: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 3px;
+  box-sizing:content-box;
+}
+
+.menu__link:last-of-type {
+  margin: 0 0 0 0;
+}
+
+.menu__link_type_signin {
+  background-color: #3DDC84;
+  color: #000000;
+  margin-right: 0;
+}
+
+.menu__link-profile {
+  width: 100px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #202020;
+  border-radius: 20px;
+  border: 1px solid #AAAAAA;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 0;
+  text-decoration: none;
+}
+
+.menu__link-profile:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.menu__icon {
+  padding: 0;
+  margin: 0 7px 0 0;
+  width: 12px;
+  height: 14px;
+}
+
+.menu__burger {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background: #202020;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: none;
+  border: none;
+  width: 44px;
+  height: 44px;
+  display: none;   
+}
+
+.menu__burger:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.menu__button_type_burger {
+  background-image: url('../../images/burger-menu.svg');
+}
+
+@media screen and (max-width: 1023px) {
+  .menu {
+    display: flex;
+    justify-content: flex-end;
+
+  }
+  .menu__container {
+    display: none;
+  }
+
+  .menu__burger {
+    display: flex;
+  }
+}
+
+

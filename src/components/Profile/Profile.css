@@ -1,0 +1,133 @@
+.profile {
+  max-width: 410px;
+  width: 410px;
+  margin: 74px auto auto auto;
+
+}
+.profile__container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-content: center; */
+  
+
+}
+
+.profile__title {
+  width: 100%;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  margin-bottom: 123px;
+}
+
+.profile__box {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border:none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 17px;
+  
+}
+
+
+.profile__box_type_top {
+  border-bottom: 1px solid #424242;
+  padding-bottom: 16px;
+  margin-top: 0;
+}
+
+.profile__label {
+  color: #8B8B8B;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #FFFFFF;
+  padding: 0;
+  margin: 0;
+  width: 141px;
+
+}
+
+.profile__input {
+  background-color: #202020;
+  color: #FFFFFF;
+  box-sizing: border-box;
+  border: none;
+  cursor: text;
+  text-overflow: ellipsis;
+  text-align: end;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  padding: 0;
+  margin-left: 147px;
+  width: 122px;
+}
+
+.profile__error {
+
+}
+
+.profile__conteiner-button {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 220px auto auto auto;
+
+}
+
+.profile__button {
+  border: none;
+  background-color: #202020;
+  color: #FFFFFF;
+  font-weight: 400px;
+  font-size: 13px;
+  line-height: 16px;
+  margin-bottom: 16px;
+}
+
+.profile__button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.profile__exit {
+  text-decoration: none;
+  color: #EE3465;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.profile__exit:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 500px) {
+  .profile {
+    width: 260px;
+  }
+
+  .profile__label {
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+  .profile__button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .profile__exit {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
