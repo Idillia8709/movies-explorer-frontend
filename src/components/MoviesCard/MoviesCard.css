@@ -62,6 +62,10 @@
   background-size: 10px 13px;
 }
 
+.movie__save-button:hover {
+  background-image: url('../../images/iconLikeRed.svg');
+}
+
 .movie__save-button_type_active {
   background-image: url('../../images/iconLikeRed.svg');
 }
