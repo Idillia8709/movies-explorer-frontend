@@ -1,0 +1,25 @@
+.form__button {
+  background-color: #4285F4;
+  color: #FFFFFF;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  max-width: 396px;
+  width: 396px;
+  height: 45px;
+  border-radius: 5px;
+  border: none;
+  padding: 0;
+  margin: 128px auto 16px auto;
+}
+
+.form__button_disabled {
+  background-color: #f8f8f8;
+  color: #c2c2c2;
+}
+
+.form__button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}

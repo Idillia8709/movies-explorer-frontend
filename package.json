@@ -6,17 +6,19 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "cross-env": "^7.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-use-window-width": "^1.0.5",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env GENERATE_SOURCEMAP=true react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
-    "deploy": "npm run build",
+    "deploy": "npm run build && scp -r ./build/* idillia@84.201.163.46:/home/idillia/movie-explorer-frontend",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

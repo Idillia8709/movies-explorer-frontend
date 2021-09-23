@@ -1,26 +1,45 @@
 import React from 'react';
 import './MoviesCard.css';
 
-export default function MoviesCard(props) {
+export default function MoviesCard({ card, onLike, onDelete, savedPage, liked }) {
+
+  function handleCardLikeClick() {
+    console.log("like", card);
+    onLike(card);
+  }
+
+  function handleCardDeleteClick() {
+    console.log("delete");
+    onDelete(card);
+  }
+
+  function getTimeFromMins(mins) {
+    const hours = Math.trunc(mins / 60);
+    const minutes = mins % 60;
+    return `${hours}ч ${minutes}м`;
+  };
 
   return (
     <>
-    <li className="movie-card">
-      <img className="movie-card__image" src={props.card.image} alt={props.card.nameRu} />
-      <div className="movie-card__container">
-        <div className="movie-card__description">
-          <h3 className="movie-card__title">{props.card.nameRU}</h3>
-          <button
-            type="button"
-            className={`movie__button
-            ${props.savedPage ? 'movie__delete-button' : 'movie__save-button'} 
-            ${props.card.owner === 1 && !props.savedPage ? 'movie__save-button_type_active' : null}`}
+      <li className="movie-card">
+        <a className="movie-card__link" href={card.trailer || card.trailerLink} target='_blank' rel='noreferrer'>
+          <img className="movie-card__image" src={card.image} alt={card.nameRu} />
+        </a>
+        <div className="movie-card__container">
+          <div className="movie-card__description">
+            <h3 className="movie-card__title">{card.nameRU}</h3>
+            <button
+              type="button"
+              className={`movie__button
+            ${savedPage ? 'movie__delete-button' : 'movie__save-button'} 
+            ${liked && !savedPage ? 'movie__save-button_type_active' : null}`}
+            onClick={savedPage || liked ? handleCardDeleteClick : handleCardLikeClick}
             >
-          </button>
+            </button>
+          </div>
+          <p className="movie-card__duration">{getTimeFromMins(card.duration)}</p>
         </div>
-        <p className="movie-card__duration">{props.card.duration}</p>
-      </div>
-    </li>
+      </li>
     </>
   )
 }
