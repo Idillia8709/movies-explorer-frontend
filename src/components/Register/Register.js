@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Register.css';
 import DefaultForm from '../DefaultForm/DefaultForm';
-import ServerErrorMessage from '../ServerErrorMessage/ServererrorMessage';
+import ServerErrorMessage from '../ServerErrorMessage/ServerErrorMessage';
 import { Link } from 'react-router-dom';
 
 export default function Register({ onRegister, message }) {

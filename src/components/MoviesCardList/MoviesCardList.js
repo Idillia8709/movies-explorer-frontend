@@ -53,7 +53,6 @@ export default function MoviesCardList({
   }
 
   function getSavedMoviesList() {
-    console.log('list', list);
     return list.map((item) => (
       <MoviesCard
         key={item._id} {...item}
@@ -66,9 +65,7 @@ export default function MoviesCardList({
   }
 
   function getMoviesList() {
-    console.log(displayList);
     return displayList.map((item) => {
-      // console.log('item', item);
       const likedMovieCard = getSavedMovieCard(savedMovies, item.id);
       const likedMovieId = likedMovieCard ? likedMovieCard._id : null;
       return (

@@ -5,7 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import { filterSearchQuery, filterMoviesDuration } from '../../utils/utils';
 import Footer from '../Footer/Footer';
 
-export default function SavesMovies({ list, onDeleteClick }) {
+export default function SavesMovies({ list, onDeleteClick, isError }) {
   const [notFoundMovies, setNotFoundMovies] = useState(false);
   const [query, setQuery] = useState('');
   const [shortMovies, setShortMovies] = useState('off');
@@ -42,6 +42,7 @@ export default function SavesMovies({ list, onDeleteClick }) {
           savedMoviesPage={true}
           onDelete={onDeleteClick}
           isEmptyList={notFoundMovies}
+          isError={isError}
         />
       </section>
       <Footer />

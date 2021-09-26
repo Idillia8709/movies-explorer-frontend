@@ -22,31 +22,36 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
+  const [isError, setIsError] = useState(false);
   const [isPopupMenu, setIsPopupMenu] = useState(false);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    setIsLoading(true);
-    mainApi.getUserInfo()
-      .then((user) => {
-        console.log(currentUser);
+      Promise.all([mainApi.getUserInfo(), mainApi.getUserMovies()])
+      .then(([user, movies]) => {
+        handleLoggedIn();
         setCurrentUser(user);
-        setLoggedIn(true);
+        const list = movies.filter(
+          (item) => item.owner._id === user._id
+        );
+        localStorage.setItem('savedMovies', list);
+        setSavedMovies(list);
+        setIsError(false);
+        history.push("/movies");
       })
-      .catch(error => console.log(error))
-      .finally(() => setIsLoading(false))
-  }, [currentUser, loggedIn])
-
-  useEffect(() => {
-    if (loggedIn) {
-      mainApi.getUserMovies()
-        .then((movies) => {
-          console.log("usermovies", movies);
-          setSavedMovies(movies);
-        })
-        .catch(error => console.log(error))
-    }
+      .catch((error) => {
+        setIsError(true);
+        console.log(error);
+      })
   }, [loggedIn])
+
+  function handleLoggedIn() {
+    setLoggedIn(true);
+  };
+
+  function handleLoggedOut() {
+    setLoggedIn(false);
+  };
 
   function handleRegister(name, email, password) {
     mainApi
@@ -72,10 +77,12 @@ export default function App() {
     setIsLoading(true);
     mainApi
       .login(email, password)
-      .then((data) => {
+      .then(() => {
         setMessage('');
-        setLoggedIn(true);
-        history.push('/movies')
+        handleLoggedIn();
+        history.push('/movies');
+        return loggedIn;
+
       })
       .catch(error => {
         setMessage("При авторизации произошла ошибка");
@@ -94,7 +101,6 @@ export default function App() {
       .then((user) => {
         setMessage('');
         setCurrentUser(user);
-        console.log("currentUserUpdate", currentUser)
       })
       .catch(error => {
         if (error === 409) {
@@ -111,19 +117,18 @@ export default function App() {
       .then(() => {
         localStorage.clear();
         setMessage('');
-        setLoggedIn(false);
+        handleLoggedOut();
+        console.log(loggedIn);
         setCurrentUser({});
-        console.log("currentUserExit", currentUser);
+        setSavedMovies([]);
         history.push('/');
       })
       .catch(error => console.log(error))
   }
 
   function handleSaveMovie(movie) {
-    console.log("movie", movie);
     mainApi.saveMovie(movie)
       .then((newCard) => {
-        console.log(newCard);
         setSavedMovies([newCard, ...savedMovies]);
       })
       .catch(error => console.log(error))
@@ -154,7 +159,6 @@ export default function App() {
             onPopupMenu={handlePopupMenu}
             loggedIn={loggedIn}
           />
-
           <Switch>
 
             <ProtectedRoute
@@ -173,6 +177,7 @@ export default function App() {
               list={savedMovies}
               onDeleteClick={handleDeleteMovie}
               message={message}
+              isError={isError}
             />
 
             <ProtectedRoute

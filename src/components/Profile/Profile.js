@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Profile.css';
-import ServerErrorMessage from '../ServerErrorMessage/ServererrorMessage';
+import ServerErrorMessage from '../ServerErrorMessage/ServerErrorMessage';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 

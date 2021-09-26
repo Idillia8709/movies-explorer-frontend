@@ -4,12 +4,10 @@ import './MoviesCard.css';
 export default function MoviesCard({ card, onLike, onDelete, savedPage, liked }) {
 
   function handleCardLikeClick() {
-    console.log("like", card);
     onLike(card);
   }
 
   function handleCardDeleteClick() {
-    console.log("delete");
     onDelete(card);
   }
 

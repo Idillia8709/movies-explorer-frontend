@@ -80,7 +80,7 @@ class MainApi {
         ...this._headers,
       }
     })
-      .then((res) => this._parseResponse(res))
+      // .then((res) => this._parseResponse(res))
   }
 
   getUserMovies() {
