@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Profile.css';
 import ServerErrorMessage from '../ServerErrorMessage/ServerErrorMessage';
@@ -10,15 +10,18 @@ export default function Profile({ onSignOut, onUpdate, message} ) {
   const [nameError, setNameError] = useState('');
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
-  const currentUser = React.useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
   const [formValid, setFormValid] = useState(false);
 
   useEffect(() => {
     if (currentUser) {
     setName(currentUser.name);
     setEmail(currentUser.email);
+    console.log(currentUser);
     }
-  }, [currentUser]);
+  }, [currentUser])
+
+
 
   useEffect(() => {
     if (name && email && !nameError && !emailError) {
@@ -29,8 +32,6 @@ export default function Profile({ onSignOut, onUpdate, message} ) {
   }, [name, email, nameError, emailError]);
 
   
-
-
   function handleNameChange(event) {
     const validName = /^[a-zA-Z\- а-яА-Я]+$/.test(event.target.value);
     if (event.target.value.length < 2) {

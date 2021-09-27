@@ -31,6 +31,7 @@ export default function App() {
       .then(([user, movies]) => {
         handleLoggedIn();
         setCurrentUser(user);
+        console.log("user", user);
         const list = movies.filter(
           (item) => item.owner._id === user._id
         );
@@ -112,13 +113,17 @@ export default function App() {
 
   }
 
+  function deleteCurrentUser(params) {
+    setCurrentUser({});
+  }
+
   function handleSignOut() {
     mainApi.signout()
       .then(() => {
         localStorage.clear();
         setMessage('');
         handleLoggedOut();
-        setCurrentUser({});
+        deleteCurrentUser();
         setSavedMovies([]);
         history.push('/');
       })
