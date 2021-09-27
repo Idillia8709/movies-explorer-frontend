@@ -104,8 +104,8 @@ class MainApi {
     trailer,
     nameRU,
     nameEN,
-    thumbnail,
     id,
+    thumbnail
   }) {
     return fetch(this._moviesUrl, {
       method: 'POST',
@@ -120,7 +120,7 @@ class MainApi {
         year,
         description,
         image,
-        trailer: trailer,
+        trailer,
         nameRU: nameRU || 'no name',
         nameEN: nameEN || 'no name',
         thumbnail,

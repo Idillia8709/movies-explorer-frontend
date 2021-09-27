@@ -4,6 +4,7 @@ import './MoviesCard.css';
 export default function MoviesCard({ card, onLike, onDelete, savedPage, liked }) {
 
   function handleCardLikeClick() {
+    console.log("карточка на сохранение", card);
     onLike(card);
   }
 
@@ -20,7 +21,7 @@ export default function MoviesCard({ card, onLike, onDelete, savedPage, liked })
   return (
     <>
       <li className="movie-card">
-        <a className="movie-card__link" href={card.trailer || card.trailerLink} target='_blank' rel='noreferrer'>
+        <a className="movie-card__link" href={card.trailer} target='_blank' rel='noreferrer'>
           <img className="movie-card__image" src={card.image} alt={card.nameRu} />
         </a>
         <div className="movie-card__container">

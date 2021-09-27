@@ -3,21 +3,21 @@ import './Movies.css';
 import Footer from '../Footer/Footer';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import { filterMoviesDuration, filterSearchQuery, checkImageLink } from '../../utils/utils';
+import { filterMoviesDuration, filterSearchQuery, convertedMovies } from '../../utils/utils';
 import moviesApi from '../../utils/MoviesApi';
 
 
-export default function Movies({ savedMovies, onLikeClick, onDeleteClick, loggedIn }) {
+export default function Movies({ savedMovies, onLikeClick, onDeleteClick }) {
   const filtered = localStorage.getItem('shortMovies') === 'on' ? 'on' : 'off';
-// состояние строки поиска
+  // состояние строки поиска
   const [query, setQuery] = useState('');
-// состояние чекбокса
+  // состояние чекбокса
   const [shortMovies, setShortMovies] = useState(filtered);
-// cостояние отфильтрованного фильма
+  // cостояние отфильтрованного фильма
   const [selectedMovies, setSelectedMovies] = useState([]);
-// состояние фсех фильмов с api
+  // состояние фсех фильмов с api
   const [allMovies, setAllMovies] = useState([]);
-// состояние найдено что-то или нет
+  // состояние найдено что-то или нет
   const [notFoundMovies, setNotFoundMovies] = useState(false);
   // состояние загрузки фильмов
   const [isMoviesLoaging, setIsMoviesLoaging] = useState(false);
@@ -39,12 +39,9 @@ export default function Movies({ savedMovies, onLikeClick, onDeleteClick, logged
     if (!allMovies.length) {
       moviesApi.getMovies()
         .then((movies) => {
-          checkImageLink(movies);
-          setAllMovies(movies);
-          localStorage.setItem("movies", allMovies);
-
-          setIsError('');
-          handleSetSelectedMovies(movies, value, shortMovies);
+          const list =convertedMovies(movies);
+          setAllMovies(list);
+          handleSetSelectedMovies(list, value, shortMovies);
         })
         .catch((error) => {
           setIsError(true);
@@ -61,32 +58,38 @@ export default function Movies({ savedMovies, onLikeClick, onDeleteClick, logged
     localStorage.setItem('shortMovies', event.target.value);
   }
 
-  // useEffect(() => {
-  //   const array = JSON.parse(localStorage.getItem('movies'));
-  //   if (array && !query) {
-  //     setShortMovies(localStorage.getItem('shortMovies'));
-  //     setSelectedMovies(shortMovies === 'on' ? filterMoviesDuration(array) : array);
-  //     if (array.length === 0) {
-  //       setNotFoundMovies(true);
-  //     } else {
-  //       setNotFoundMovies(false);
-  //     }
-  //   }
-  // }, [shortMovies])
+  function handleFilteredMovies(array) {
+    if (array.length === 0) {
+      setNotFoundMovies(true);
+    } else {
+      setNotFoundMovies(false);
+    }
+
+  }
+
+  useEffect(() => {
+    const array = JSON.parse(localStorage.getItem('movies'));
+    if (array && !query) {
+      setShortMovies(localStorage.getItem('shortMovies'));
+      console.log(shortMovies);
+      setSelectedMovies(shortMovies === 'on' ? filterMoviesDuration(array) : array);
+      handleFilteredMovies(array);
+    }
+  }, [shortMovies])
 
   useEffect(() => {
     if (query) {
+      console.log("query", query);
       const array = filterSearchQuery(allMovies, query);
       setSelectedMovies(array);
-      if (array.length === 0) {
-        setNotFoundMovies(true);
-      } else {
-        setNotFoundMovies(false);
-      }
+      console.log("selectedMovies", selectedMovies);
+      console.log("полученные фильмы", allMovies);
+      console.log("выбранные фильмы", selectedMovies);
+      handleFilteredMovies(array);
     }
   }, [query, shortMovies, allMovies])
 
-  
+
   return (
     <>
       <section className="movies">

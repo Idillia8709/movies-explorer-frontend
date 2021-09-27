@@ -55,7 +55,7 @@ export default function MoviesCardList({
   function getSavedMoviesList() {
     return list.map((item) => (
       <MoviesCard
-        key={item._id} {...item}
+        key={item._id} 
         card={item}
         savedPage={savedMoviesPage}
         onDelete={onDelete}
@@ -70,7 +70,7 @@ export default function MoviesCardList({
       const likedMovieId = likedMovieCard ? likedMovieCard._id : null;
       return (
         <MoviesCard
-          key={item._id} {...item}
+          key={item.id}
           card={{ ...item, _id: likedMovieId }}
           onDelete={onDelete}
           onLike={onLike}

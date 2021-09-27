@@ -13,11 +13,22 @@ export function filterSearchQuery(movies, query) {
   return findedMovies;
 }
 
-export function checkImageLink(movies) {
-  movies.forEach(movie => {
-    movie.image.formats.thumbnail.url = `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`;
-    movie.image = `https://api.nomoreparties.co${movie.image.url}`;
-
+export function convertedMovies(movies) {
+  return movies.map((movie) => {
+    return {
+      country: movie.country,
+      director: movie.director,
+      duration: movie.duration,
+      year: movie.year,
+      description: movie.description,
+      trailer: movie.trailerLink,
+      nameRU: movie.nameRU,
+      nameEN: movie.nameEN,
+      thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
+      id: movie.id,
+      image: `https://api.nomoreparties.co${movie.image.url}`,
+    };
+  
   });
 }
 

@@ -118,7 +118,6 @@ export default function App() {
         localStorage.clear();
         setMessage('');
         handleLoggedOut();
-        console.log(loggedIn);
         setCurrentUser({});
         setSavedMovies([]);
         history.push('/');
