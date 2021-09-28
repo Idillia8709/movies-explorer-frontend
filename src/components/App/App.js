@@ -36,10 +36,10 @@ export default function App() {
         localStorage.setItem('savedMovies', list);
         setSavedMovies(list);
         setIsError(false);
-        history.push("/movies");
+        // history.push("/movies");
       })
       .catch((error) => {
-        history.push("/");
+        // history.push("/");
         setIsError(true);
         console.log(error);
       })
