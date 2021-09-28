@@ -1,0 +1,10 @@
+.saved-movies {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.saved-movies__content {
+  flex: 1 0 auto;
+}

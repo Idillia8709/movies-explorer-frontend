@@ -9,7 +9,6 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
-import Header from '../Header/Header';
 import PopupMenu from '../PopupMenu/PopupMenu';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Preloader from '../Preloader/Preloader';
@@ -27,23 +26,29 @@ export default function App() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
+    if (loggedIn) {
       Promise.all([mainApi.getUserInfo(), mainApi.getUserMovies()])
-      .then(([user, movies]) => {
-        handleLoggedIn();
-        setCurrentUser(user);
-        console.log("user", user);
-        const list = movies.filter(
-          (item) => item.owner._id === user._id
-        );
-        localStorage.setItem('savedMovies', list);
-        setSavedMovies(list);
-        setIsError(false);
-        history.push("/movies");
-      })
-      .catch((error) => {
-        setIsError(true);
-        console.log(error);
-      })
+        .then(([user, movies]) => {
+          handleLoggedIn();
+          setCurrentUser(user);
+          console.log("user", user);
+          const list = movies.filter(
+            (item) => item.owner._id === user._id
+          );
+          localStorage.setItem('savedMovies', list);
+          setSavedMovies(list);
+          setIsError(false);
+          history.push("/movies");
+        })
+        .catch((error) => {
+          history.push("/");
+          setIsError(true);
+          console.log(error);
+        })
+
+    }
+
+
   }, [loggedIn])
 
   function handleLoggedIn() {
@@ -100,7 +105,7 @@ export default function App() {
   function handleUpdateUser(name, email) {
     mainApi.sendUserInfo(name, email)
       .then((user) => {
-        setMessage('');
+        setMessage('Данные пользователя успешно обновлены');
         setCurrentUser(user);
       })
       .catch(error => {
@@ -159,25 +164,27 @@ export default function App() {
     <CurrentUserContext.Provider value={currentUser}>
       {isLoading ? <Preloader /> : (
         <>
-          <Header
+          {/* <Header
             onPopupMenu={handlePopupMenu}
             loggedIn={loggedIn}
-          />
+          /> */}
           <Switch>
 
             <ProtectedRoute
+              onPopupMenu={handlePopupMenu}
+              loggedIn={loggedIn}
               path="/movies"
               component={Movies}
-              loggedIn={loggedIn}
               savedMovies={savedMovies}
               onLikeClick={handleSaveMovie}
               onDeleteClick={handleDeleteMovie}
               message={message}
             />
             <ProtectedRoute
+              onPopupMenu={handlePopupMenu}
+              loggedIn={loggedIn}
               path="/saved-movies"
               component={SavedMovies}
-              loggedIn={loggedIn}
               list={savedMovies}
               onDeleteClick={handleDeleteMovie}
               message={message}
@@ -185,6 +192,7 @@ export default function App() {
             />
 
             <ProtectedRoute
+              onPopupMenu={handlePopupMenu}
               path="/profile"
               component={Profile}
               loggedIn={loggedIn}
@@ -194,7 +202,10 @@ export default function App() {
             />
 
             <Route exact path="/">
-              <Main />
+              <Main
+                onPopupMenu={handlePopupMenu}
+                loggedIn={loggedIn}
+              />
             </Route>
 
             <Route path="/signin">
@@ -217,7 +228,6 @@ export default function App() {
           />
         </>
       )}
-
     </CurrentUserContext.Provider >
   );
 }

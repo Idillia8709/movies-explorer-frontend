@@ -94,6 +94,8 @@
 
 .search-form__radio-button {
   position: absolute;
+  width: 14px;
+  height: 14px;
   left: 0;
   right: 0;
   margin: 0;

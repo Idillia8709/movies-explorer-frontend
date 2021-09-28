@@ -5,9 +5,10 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import { filterMoviesDuration, filterSearchQuery, convertedMovies } from '../../utils/utils';
 import moviesApi from '../../utils/MoviesApi';
+import Header from '../Header/Header';
 
 
-export default function Movies({ savedMovies, onLikeClick, onDeleteClick }) {
+export default function Movies({ savedMovies, onLikeClick, onDeleteClick, onPopupMenu, loggedIn }) {
   const filtered = localStorage.getItem('shortMovies') === 'on' ? 'on' : 'off';
   // состояние строки поиска
   const [query, setQuery] = useState('');
@@ -39,7 +40,7 @@ export default function Movies({ savedMovies, onLikeClick, onDeleteClick }) {
     if (!allMovies.length) {
       moviesApi.getMovies()
         .then((movies) => {
-          const list =convertedMovies(movies);
+          const list = convertedMovies(movies);
           setAllMovies(list);
           handleSetSelectedMovies(list, value, shortMovies);
         })
@@ -91,13 +92,16 @@ export default function Movies({ savedMovies, onLikeClick, onDeleteClick }) {
 
 
   return (
-    <>
-      <section className="movies">
+    <section className="movies">
+      <div className="movies__content">
+        <Header
+          onPopupMenu={onPopupMenu}
+          loggedIn={loggedIn}
+        />
         <SearchForm
           shortMovies={shortMovies}
           onCheckbox={handleCheckbox}
           onSearchClick={handleSearchSubmit}
-
         />
         <MoviesCardList
           onLike={onLikeClick}
@@ -108,9 +112,9 @@ export default function Movies({ savedMovies, onLikeClick, onDeleteClick }) {
           isLoading={isMoviesLoaging}
           isError={isError}
         />
-      </section>
+      </div>
       <Footer />
-    </>
+    </section>
   )
 
 }
