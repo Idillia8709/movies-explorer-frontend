@@ -6,7 +6,6 @@ class MainApi {
     this._headers = config.headers;
     this._profileUrl = `${this._url}/users/me`;
     this._moviesUrl = `${this._url}/movies`;
-    this._token = this._headers['authorization'];
   }
 
   _parseResponse(res) {
@@ -22,7 +21,6 @@ class MainApi {
       credentials: 'include',
       headers: {
         ...this._headers,
-        authorization: this._token,
       }
     })
       .then((res) => this._parseResponse(res))
@@ -34,7 +32,6 @@ class MainApi {
       credentials: 'include',
       headers: {
         ...this._headers,
-        authorization: this._token,
       },
       body: JSON.stringify({
         name,
@@ -81,7 +78,6 @@ class MainApi {
       credentials: 'include',
       headers: {
         ...this._headers,
-        authorization: this._token,
       }
     })
     // .then((res) => this._parseResponse(res))
@@ -93,7 +89,6 @@ class MainApi {
       credentials: 'include',
       headers: {
         ...this._headers,
-        authorization: this._token,
       }
     })
       .then((res) => this._parseResponse(res))
@@ -117,7 +112,6 @@ class MainApi {
       credentials: 'include',
       headers: {
         ...this._headers,
-        authorization: this._token,
       },
       body: JSON.stringify({
         country: country || 'no country',
@@ -142,7 +136,6 @@ class MainApi {
       credentials: 'include',
       headers: {
         ...this._headers,
-        authorization: this._token,
       }
     })
       .then((res) => this._parseResponse(res))

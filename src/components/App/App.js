@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './App.css';
 import Main from '../Main/Main';
@@ -26,30 +26,24 @@ export default function App() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    if (loggedIn) {
-      Promise.all([mainApi.getUserInfo(), mainApi.getUserMovies()])
-        .then(([user, movies]) => {
-          handleLoggedIn();
-          setCurrentUser(user);
-          console.log("user", user);
-          const list = movies.filter(
-            (item) => item.owner._id === user._id
-          );
-          localStorage.setItem('savedMovies', list);
-          setSavedMovies(list);
-          setIsError(false);
-          history.push("/movies");
-        })
-        .catch((error) => {
-          history.push("/");
-          setIsError(true);
-          console.log(error);
-        })
-
-    }
-
-
-  }, [loggedIn])
+    Promise.all([mainApi.getUserInfo(), mainApi.getUserMovies()])
+      .then(([user, movies]) => {
+        handleLoggedIn();
+        setCurrentUser(user);
+        const list = movies.filter(
+          (item) => item.owner._id === user._id
+        );
+        localStorage.setItem('savedMovies', list);
+        setSavedMovies(list);
+        setIsError(false);
+        history.push("/movies");
+      })
+      .catch((error) => {
+        history.push("/");
+        setIsError(true);
+        console.log(error);
+      })
+  }, [loggedIn, history])
 
   function handleLoggedIn() {
     setLoggedIn(true);
@@ -164,12 +158,7 @@ export default function App() {
     <CurrentUserContext.Provider value={currentUser}>
       {isLoading ? <Preloader /> : (
         <>
-          {/* <Header
-            onPopupMenu={handlePopupMenu}
-            loggedIn={loggedIn}
-          /> */}
           <Switch>
-
             <ProtectedRoute
               onPopupMenu={handlePopupMenu}
               loggedIn={loggedIn}
@@ -190,7 +179,6 @@ export default function App() {
               message={message}
               isError={isError}
             />
-
             <ProtectedRoute
               onPopupMenu={handlePopupMenu}
               path="/profile"
@@ -200,7 +188,6 @@ export default function App() {
               onUpdate={handleUpdateUser}
               message={message}
             />
-
             <Route exact path="/">
               <Main
                 onPopupMenu={handlePopupMenu}
@@ -209,11 +196,11 @@ export default function App() {
             </Route>
 
             <Route path="/signin">
-              {loggedIn ? <Redirect to='/movies' /> : <Login onLogin={handleLogin} message={message} loggedIn={loggedIn} />}
+              <Login onLogin={handleLogin} message={message} loggedIn={loggedIn} />
             </Route>
 
             <Route path="/signup">
-              {loggedIn ? <Redirect to='/movies' /> : <Register onRegister={handleRegister} message={message} />}
+              <Register onRegister={handleRegister} message={message} />
             </Route>
 
             <Route path="*">

@@ -72,7 +72,6 @@ export default function Movies({ savedMovies, onLikeClick, onDeleteClick, onPopu
     const array = JSON.parse(localStorage.getItem('movies'));
     if (array && !query) {
       setShortMovies(localStorage.getItem('shortMovies'));
-      console.log(shortMovies);
       setSelectedMovies(shortMovies === 'on' ? filterMoviesDuration(array) : array);
       handleFilteredMovies(array);
     }
@@ -80,12 +79,8 @@ export default function Movies({ savedMovies, onLikeClick, onDeleteClick, onPopu
 
   useEffect(() => {
     if (query) {
-      console.log("query", query);
       const array = filterSearchQuery(allMovies, query);
       setSelectedMovies(array);
-      console.log("selectedMovies", selectedMovies);
-      console.log("полученные фильмы", allMovies);
-      console.log("выбранные фильмы", selectedMovies);
       handleFilteredMovies(array);
     }
   }, [query, shortMovies, allMovies])
