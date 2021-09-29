@@ -1,127 +1,154 @@
-  import { BASE_URL} from './constant';
+import { BASE_URL } from './constant';
 
-class Api {
+class MainApi {
   constructor(config) {
-    this.url = config.url;
+    this._url = config.url;
     this._headers = config.headers;
+    this._profileUrl = `${this._url}/users/me`;
+    this._moviesUrl = `${this._url}/movies`;
   }
 
   _parseResponse(res) {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(new Error(`Ошибка со статус-кодом ${res.status}`));
-  }
-
-  getCardList() {
-    return fetch(`${this.url}/cards`, {
-      method: 'GET',
-      headers: {
-        ...this._headers,
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-      },
-    })
-      .then(res => this._parseResponse(res))
-  }
-
-  createCard(card) {
-    return fetch(`${this.url}/cards`, {
-      method: 'POST',
-      headers: {
-        ...this._headers,
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-      },
-      body: JSON.stringify({
-        name: card.name,
-        link: card.link
-      })
-    })
-      .then(res => this._parseResponse(res))
-  }
-
-  deleteCard(_id) {
-    return fetch(`${this.url}/cards/${_id}`, {
-      method: 'DELETE',
-      headers: {
-        ...this._headers,
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-      },
-    })
-      .then(res => this._parseResponse(res))
-  }
-
-  changeLikeCardStatus(cardId, isLiked) {
-    if (isLiked) {
-      return this.addCardLike(cardId);
-    } else {
-      return this.removeLikeCard(cardId);
-    }
-  }
-
-   addCardLike(id) {
-    return fetch(`${this.url}/cards/likes/${id}`, {
-      method: 'PUT',
-      headers: {
-        ...this._headers,
-        Authorization:`Bearer ${localStorage.getItem('jwt')}`
-      },
-    })
-      .then(res => this._parseResponse(res))
-  }
-
-  removeLikeCard(id) {
-    return fetch(`${this.url}/cards/likes/${id}`, {
-      method: 'DELETE',
-      headers: {
-        ...this._headers,
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-      },
-    })
-      .then(res => this._parseResponse(res))
+    return Promise.reject(res.status);
   }
 
   getUserInfo() {
-    return fetch(`${this.url}/users/me`, {
+    return fetch(this._profileUrl, {
       method: 'GET',
+      credentials: 'include',
       headers: {
         ...this._headers,
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-      },
+      }
     })
-      .then(res => this._parseResponse(res))
+      .then((res) => this._parseResponse(res))
   }
 
-  sendUserInfo(data) {
-    return fetch(`${this.url}/users/me`, {
+  sendUserInfo(name, email) {
+    return fetch(this._profileUrl, {
       method: 'PATCH',
+      credentials: 'include',
       headers: {
         ...this._headers,
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify({
+        name,
+        email
+      })
     })
-      .then(res => this._parseResponse(res))
+      .then((res) => this._parseResponse(res))
   }
 
-  editUserAvatar(avatar) {
-    return fetch(`${this.url}/users/me/avatar`, {
-      method: 'PATCH',
+  register(name, email, password) {
+    return fetch(`${this._url}/signup`, {
+      method: 'POST',
+      credentials: 'include',
       headers: {
         ...this._headers,
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
       },
-      body: JSON.stringify(avatar)
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      })
     })
-      .then(res => this._parseResponse(res))
+      .then((res) => this._parseResponse(res))
   }
+
+  login(email, password) {
+    return fetch(`${this._url}/signin`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        ...this._headers,
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      })
+    })
+      .then((res) => this._parseResponse(res))
+  }
+
+  signout() {
+    return fetch(`${this._url}/signout`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        ...this._headers,
+      }
+    })
+    // .then((res) => this._parseResponse(res))
+  }
+
+  getUserMovies() {
+    return fetch(this._moviesUrl, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        ...this._headers,
+      }
+    })
+      .then((res) => this._parseResponse(res))
+  }
+
+  saveMovie({
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailer,
+    nameRU,
+    nameEN,
+    id,
+    thumbnail
+  }) {
+    return fetch(this._moviesUrl, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        ...this._headers,
+      },
+      body: JSON.stringify({
+        country: country || 'no country',
+        director,
+        duration,
+        year,
+        description,
+        image,
+        trailer,
+        nameRU: nameRU || 'no name',
+        nameEN: nameEN || 'no name',
+        thumbnail,
+        movieId: id,
+      })
+    })
+      .then((res) => this._parseResponse(res))
+  }
+
+  deleteMovie(movieId) {
+    return fetch(`${this._moviesUrl}/${movieId}`, {
+      method: 'DElETE',
+      credentials: 'include',
+      headers: {
+        ...this._headers,
+      }
+    })
+      .then((res) => this._parseResponse(res))
+  }
+
 }
 
 const config = {
-  url: {BASE_URL},
+  url: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
   }
 }
-const api = new Api(config);
-export default api;
+const mainApi = new MainApi(config);
+export default mainApi;

@@ -1,0 +1,10 @@
+.movies {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.movies__content {
+  flex: 1 0 auto;
+}

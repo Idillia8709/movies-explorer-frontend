@@ -4,6 +4,7 @@
 }
 
 .form__container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-content: flex-start;
@@ -43,6 +44,11 @@
   border: none;
   padding: 0;
   margin: 128px auto 16px auto;
+}
+
+.form__button_disabled {
+  background-color: #f8f8f8;
+  color: #c2c2c2;
 }
 
 .form__button:hover {
@@ -93,6 +99,7 @@
 
 .form__error {
   color: #EE3465;
+ 
 }
 
 .form__button-type_save_login {
