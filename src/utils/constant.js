@@ -1,4 +1,4 @@
-const BASE_URL = 'https://home-page-student.nomoredomains.club';
+const BASE_URL = 'https://MihaylovaSvetlana.nomoredomains.monster';
 const MOVIES_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 
 export {
